@@ -33,7 +33,35 @@ function startgame() {
       fireballInterval -= 10;
     }
 
+    if (fireballInterval < 900) {
+      increaseFireballSpeed();
+    }
+
     setTimeout(() => createFireball(fireballInterval), fireballInterval);
+  }
+
+  function increaseFireballSpeed() {
+    const fireballss = document.querySelectorAll(".fireball");
+
+    switch (true) {
+      case fireballInterval >= 750 && fireballInterval <= 900:
+        fireballss.style.animationDuration = "4.5s";
+        break;
+      case fireballInterval >= 600 && fireballInterval < 750:
+        fireballss.style.animationDuration = "4s";
+        break;
+      case fireballInterval >= 450 && fireballInterval < 600:
+        fireballss.style.animationDuration = "3.5s";
+        break;
+      case fireballInterval >= 350 && fireballInterval < 450:
+        fireballss.style.animationDuration = "3.s";
+        break;
+      case fireballInterval >= 250 && fireballInterval < 350:
+        fireballss.style.animationDuration = "2.5s";
+        break;
+      default:
+        return;
+    }
   }
 
   createFireball(fireballInterval);
