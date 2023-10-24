@@ -91,6 +91,7 @@ body {
   height: 3.7037037037vh;
   width: 3.7037037037vh;
   left: 0;
+  z-index: -1;
   border-radius: 50%;
   background: goldenrod;
   border: 1px solid black;
