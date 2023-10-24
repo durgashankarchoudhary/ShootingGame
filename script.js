@@ -1,7 +1,7 @@
 let gameRunning = false;
 
 const startButton = document.getElementById("startbutton");
-startButton.onclick = startgame;
+startButton.addEventListener('click', startgame);
 
 function startgame() {
   if (gameRunning) return;
@@ -25,10 +25,10 @@ function startgame() {
 
   let j = 1000;
   function startFireballGeneration() {
-    if ((gameRunning == false)) return;
-    
+    if (gameRunning == false) return;
+
     createFireball();
-  
+
     if (j >= 250) {
       j -= 10;
     }
@@ -36,6 +36,7 @@ function startgame() {
   }
 
   startFireballGeneration();
+  requestAnimationFrame(checkCollisions);
 }
 
 const shootButtons = document.querySelectorAll(".shootpanel .shooter");
@@ -56,6 +57,12 @@ function shootbullet(shootButton) {
 }
 
 function checkCollisions() {
+  // console.log("function checkCollisions0 excuted");
+
+  // if(gameRunning === false) return;
+
+  // console.log("function checkCollisions excuted");
+
   const bullets = document.querySelectorAll(".bullet");
   const fireballs = document.querySelectorAll(".fireball");
 
@@ -77,24 +84,33 @@ function checkCollisions() {
   });
 
   const shootingPanel = document.querySelector(".shootpanel");
-  const panelRect = shootingPanel.getBoundingClientRect();
+  const shootingPanelRect = shootingPanel.getBoundingClientRect();
 
   fireballs.forEach((fireball) => {
     const fireballRect = fireball.getBoundingClientRect();
 
     if (
-      fireballRect.bottom >= panelRect.top &&
-      fireballRect.left < panelRect.right &&
-      fireballRect.right > panelRect.left
+      fireballRect.bottom >= shootingPanelRect.top
     ) {
       stopgame();
     }
   });
 
+  const attackPanel = document.querySelector(".attackpanel");
+  const attackPanelRect = attackPanel.getBoundingClientRect();
+
+  bullets.forEach((bullet) => {
+    const bulletRect = bullet.getBoundingClientRect();
+
+    if (
+      bulletRect.top <= attackPanelRect.bottom
+    ) {
+      bullet.remove();
+    }
+  });
+
   requestAnimationFrame(checkCollisions);
 }
-
-requestAnimationFrame(checkCollisions);
 
 const stopButton = document.getElementById("stopbutton");
 stopButton.onclick = stopgame;
@@ -117,5 +133,5 @@ const restartButton = document.getElementById("restartbutton");
 restartButton.onclick = restartgame;
 
 function restartgame() {
-  console.log("reset game");
+  console.log("reset game executed");
 }
