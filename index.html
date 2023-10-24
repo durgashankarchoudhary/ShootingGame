@@ -10,27 +10,38 @@
 </head>
 
 <body>
-    <div class="attackpanel">
-        <div class="attacker red"></div>
-        <div class="attacker blue"></div>
-        <div class="attacker yellow"></div>
-        <div class="attacker green"></div>
-        <div class="attacker purple"></div>
+    <div class="mainGamePage">
+        <div class="scoreboard">
+            <label for="score">Score:</label>
+            <input type="number" name="score" id="score" value="0" readonly>
+        </div>
+        
+        <div class="attackpanel">
+            <div class="attacker red"></div>
+            <div class="attacker blue"></div>
+            <div class="attacker yellow"></div>
+            <div class="attacker green"></div>
+            <div class="attacker purple"></div>
+        </div>
+        
+        <div class="shootpanel">
+            <button class="shooter red"></button>
+            <button class="shooter blue"></button>
+            <button class="shooter yellow"></button>
+            <button class="shooter green"></button>
+            <button class="shooter purple"></button>
+        </div>
+        
+        <button id="startbutton" class="button start">Start Game</button>
     </div>
+        
+    <div class="endOfGame">
+        <div class="gameOver">Game Over</div>
 
-    <div class="shootpanel">
-        <button class="shooter red"></button>
-        <button class="shooter blue"></button>
-        <button class="shooter yellow"></button>
-        <button class="shooter green"></button>
-        <button class="shooter purple"></button>
+        <div class="finalScore"></div>
+        
+        <button id="restartbutton" class="button start">Restart Game</button>
     </div>
-
-    <button id="startbutton" class="button start">Start Game</button>
-
-    <button id="stopbutton" class="button stop">Stop</button>
-
-    <!-- <div class="linecheck"></div> -->
 
     <script src="script.js"></script>
 </body>

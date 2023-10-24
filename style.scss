@@ -8,37 +8,68 @@ body {
     background: grey;
 }
 
-$size: calc(100vh / 27);
+$sizeh: calc(100vh / 22);
+$sizew: calc(100vw - (5*$sizeh));
+
+.scoreboard {
+    position: fixed;
+    top: 1px;
+    left: 50vw;
+    transform: translate(-50%, 0%);
+    background: gold;
+    height: calc($sizeh - 2px);
+    width: calc(6.6*$sizeh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+label,
+input {
+    position: relative;
+    height: auto;
+    background: none;
+    font-weight: 900;
+}
+
+label {
+    width: calc($sizeh*2);
+}
+
+input {
+    width: calc($sizeh*4.6);
+    border-width: 0;
+}
 
 .shootpanel,
 .attackpanel {
     display: flex;
-    height: $size;
+    height: $sizeh;
     width: auto;
     position: fixed;
-    left: calc(50vw - ($size*2.5) - ($size*2/5));
+    left: calc(50vw - ($sizeh*2.5) - ($sizeh*4/5));
     z-index: 0;
     align-items: center;
     justify-items: center;
 }
 
 .shootpanel {
-    bottom: $size;
+    bottom: 2px;
 }
 
 .attackpanel {
-    top: $size;
+    top: calc($sizeh + 2px);
 }
 
 .shooter,
 .attacker {
     position: relative;
-    height: $size;
-    width: $size;
-    margin-right: calc($size/5);
+    height: $sizeh;
+    width: $sizeh;
+    margin-right: calc(2*$sizeh/5);
 }
 
-.shooter{
+.shooter {
     border-width: 2px;
 }
 
@@ -90,8 +121,8 @@ $size: calc(100vh / 27);
 .fireball {
     position: absolute;
     top: 0;
-    height: calc($size);
-    width: calc($size);
+    height: calc($sizeh);
+    width: calc($sizeh);
     left: 0;
     z-index: -1;
     border-radius: 50%;
@@ -103,20 +134,20 @@ $size: calc(100vh / 27);
 
 @keyframes moveFireball {
     0% {
-        top: $size;
+        top: $sizeh;
     }
 
     100% {
-        top: calc(100vh - ($size*3));
+        top: calc(100vh - ($sizeh*2));
     }
 }
 
 .bullet {
     position: absolute;
     top: -2px;
-    height: $size;
-    width: calc($size*0.5);
-    left: calc($size*0.25 - 2px);
+    height: $sizeh;
+    width: calc($sizeh*0.5);
+    left: calc($sizeh*0.25 - 2px);
     border-radius: 50% 50% 0% 0%;
     z-index: -1;
     background: pink;
@@ -130,21 +161,51 @@ $size: calc(100vh / 27);
     }
 
     100% {
-        top: calc(($size*3) - 100vh);
+        top: calc(($sizeh*2) - 100vh);
     }
 }
 
-.start {
+.start, .gameOver, .finalScore {
+    left: 50vw;
     position: fixed;
-    bottom: 0px;
-    left: calc(50vw - ($size*2.5) - ($size*2/5));
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: auto;
+    text-align: center;
+    width: min(calc(6.6*$sizeh), 100vw);
 }
 
-/*.linecheck {
-    position: fixed;
-    height: 100vh;
-    width: 0;
-    left: calc(50vw - ($size*1.5) - ($size * 1 / 5));
-    top: 0;
-    border-left: 2px solid black;
-}*/
+.gameOver, .finalScore {
+    transform: translate(-50%, 0%);
+    background: Yellow;
+    font-weight: 600;
+    text-decoration: solid;
+    font-style: italic;
+}
+
+.start {
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    background: green;
+    color: black;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.gameOver { 
+    color: Red;
+    font-size: 25px;
+    top: 20px;
+}
+
+.finalScore {
+    color: green;
+    font-size: 20px;
+    bottom: 55px;
+}
+
+.endOfGame {
+    position: relative;
+    display: none;
+}

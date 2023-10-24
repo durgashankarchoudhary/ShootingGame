@@ -1,67 +1,61 @@
 let gameRunning = false;
+let fireballInterval = 1000;
+let gameScore = 0;
 
 const startButton = document.getElementById("startbutton");
-startButton.addEventListener('click', startgame);
+startButton.addEventListener("click", startgame);
+
+const mainGamePage = document.querySelector(".mainGamePage");
+const gameOverPage = document.querySelector(".endOfGame");
+const finalScore = document.querySelector(".finalScore");
+const scoreInput = document.getElementById("score");
 
 function startgame() {
   if (gameRunning) return;
 
   gameRunning = true;
 
+  startButton.style.display = "none";
+
   const attackPanels = document.querySelectorAll(".attackpanel .attacker");
 
-  let i = 0;
-  function createFireball() {
+  function createFireball(fireballInterval) {
+    if (!gameRunning) return;
     const randomAttackPanel =
       attackPanels[Math.floor(Math.random() * attackPanels.length)];
 
     const fireball = document.createElement("div");
-    fireball.id = `fb${i}`;
-    i++;
     fireball.className = "fireball";
 
     randomAttackPanel.appendChild(fireball);
-  }
 
-  let j = 1000;
-  function startFireballGeneration() {
-    if (gameRunning == false) return;
-
-    createFireball();
-
-    if (j >= 250) {
-      j -= 10;
+    if (fireballInterval >= 250) {
+      fireballInterval -= 10;
     }
-    setTimeout(startFireballGeneration, j);
+
+    setTimeout(() => createFireball(fireballInterval), fireballInterval);
   }
 
-  startFireballGeneration();
+  createFireball(fireballInterval);
+
+  const shootButtons = document.querySelectorAll(".shootpanel .shooter");
+
+  function createBullet(shootButton) {
+    const bullet = document.createElement("div");
+    bullet.className = "bullet";
+
+    shootButton.appendChild(bullet);
+  }
+
+  shootButtons.forEach((shootButton) => {
+    shootButton.onclick = () => createBullet(shootButton);
+  });
+
   requestAnimationFrame(checkCollisions);
 }
 
-const shootButtons = document.querySelectorAll(".shootpanel .shooter");
-const shootButtonsArray = Array.from(shootButtons);
-
-let k = 0;
-for (const shootButton of shootButtonsArray) {
-  shootButton.onclick = () => shootbullet(shootButton);
-}
-
-function shootbullet(shootButton) {
-  const bullet = document.createElement("div");
-  bullet.id = `bull${k}`;
-  k++;
-  bullet.className = "bullet";
-
-  shootButton.appendChild(bullet);
-}
-
 function checkCollisions() {
-  // console.log("function checkCollisions0 excuted");
-
-  // if(gameRunning === false) return;
-
-  // console.log("function checkCollisions excuted");
+  if (gameRunning == false) return;
 
   const bullets = document.querySelectorAll(".bullet");
   const fireballs = document.querySelectorAll(".fireball");
@@ -79,6 +73,8 @@ function checkCollisions() {
       ) {
         bullet.remove();
         fireball.remove();
+        gameScore++;
+        scoreInput.value = gameScore;
       }
     });
   });
@@ -89,9 +85,7 @@ function checkCollisions() {
   fireballs.forEach((fireball) => {
     const fireballRect = fireball.getBoundingClientRect();
 
-    if (
-      fireballRect.bottom >= shootingPanelRect.top
-    ) {
+    if (fireballRect.bottom >= shootingPanelRect.top) {
       stopgame();
     }
   });
@@ -102,9 +96,7 @@ function checkCollisions() {
   bullets.forEach((bullet) => {
     const bulletRect = bullet.getBoundingClientRect();
 
-    if (
-      bulletRect.top <= attackPanelRect.bottom
-    ) {
+    if (bulletRect.top <= attackPanelRect.bottom) {
       bullet.remove();
     }
   });
@@ -112,26 +104,36 @@ function checkCollisions() {
   requestAnimationFrame(checkCollisions);
 }
 
-const stopButton = document.getElementById("stopbutton");
-stopButton.onclick = stopgame;
-
 function stopgame() {
   gameRunning = false;
 
   const bullets = document.querySelectorAll(".bullet");
+  const fireballs = document.querySelectorAll(".fireball");
+
   bullets.forEach((bullet) => {
     bullet.remove();
   });
 
-  const fireballs = document.querySelectorAll(".fireball");
   fireballs.forEach((fireball) => {
     fireball.remove();
   });
+
+  mainGamePage.style.display = "none";
+  gameOverPage.style.display = "block";
+  finalScore.innerHTML = "Your Score: " + gameScore;
 }
 
 const restartButton = document.getElementById("restartbutton");
 restartButton.onclick = restartgame;
 
 function restartgame() {
-  console.log("reset game executed");
+  gameScore = 0;
+  fireballInterval = 1000;
+
+  scoreInput.value = gameScore;
+
+  mainGamePage.style.display = "block";
+  gameOverPage.style.display = "none";
+
+  startgame();
 }
