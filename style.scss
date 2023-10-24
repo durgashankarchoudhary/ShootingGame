@@ -1,0 +1,149 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: grey;
+}
+
+$size: calc(100vh / 27);
+
+.shootpanel,
+.attackpanel {
+    display: flex;
+    height: $size;
+    width: auto;
+    position: fixed;
+    left: calc(50vw - ($size*2.5) - ($size*2/5));
+    z-index: 0;
+    align-items: center;
+    justify-items: center;
+}
+
+.shootpanel {
+    bottom: $size;
+}
+
+.attackpanel {
+    top: $size;
+}
+
+.shooter,
+.attacker {
+    position: relative;
+    height: $size;
+    width: $size;
+    margin-right: calc($size/5);
+}
+
+.shooter{
+    border-width: 2px;
+}
+
+.attacker:last-child,
+.shooter:last-child {
+    margin-right: 0;
+}
+
+.red {
+    background: red;
+}
+
+.blue {
+    background: blue;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.green {
+    background: green;
+}
+
+.purple {
+    background: purple;
+}
+
+.shootpanel .red:hover {
+    background: rgb(155, 52, 52);
+}
+
+.shootpanel .blue:hover {
+    background: lightblue;
+}
+
+.shootpanel .yellow:hover {
+    background: rgb(207, 207, 113);
+}
+
+.shootpanel .green:hover {
+    background: lightgreen;
+}
+
+.shootpanel .purple:hover {
+    background: rgb(150, 81, 150);
+}
+
+.fireball {
+    position: absolute;
+    top: 0;
+    height: calc($size);
+    width: calc($size);
+    left: 0;
+    border-radius: 50%;
+    background: goldenrod;
+    border: 1px solid black;
+    animation: moveFireball 5s linear;
+    transform-origin: top left;
+}
+
+@keyframes moveFireball {
+    0% {
+        top: $size;
+    }
+
+    100% {
+        top: calc(100vh - ($size*3));
+    }
+}
+
+.bullet {
+    position: absolute;
+    top: -2px;
+    height: $size;
+    width: calc($size*0.5);
+    left: calc($size*0.25 - 2px);
+    border-radius: 50% 50% 0% 0%;
+    z-index: -1;
+    background: pink;
+    animation: movebullet .5s linear;
+    transform-origin: top left;
+}
+
+@keyframes movebullet {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: calc(($size*3) - 100vh);
+    }
+}
+
+.start {
+    position: fixed;
+    bottom: 0px;
+    left: calc(50vw - ($size*2.5) - ($size*2/5));
+}
+
+/*.linecheck {
+    position: fixed;
+    height: 100vh;
+    width: 0;
+    left: calc(50vw - ($size*1.5) - ($size * 1 / 5));
+    top: 0;
+    border-left: 2px solid black;
+}*/
