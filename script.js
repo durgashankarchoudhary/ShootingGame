@@ -33,40 +33,38 @@ function startgame() {
       fireballInterval -= 10;
     }
 
-    if (fireballInterval < 900) {
-      console.log(fireballInterval);
-      const fireballss = document.querySelectorAll(".fireball");
+    const fireballss = document.querySelectorAll(".fireball");
 
-      switch (true) {
-        case fireballInterval >= 750 && fireballInterval <= 900:
-          fireballss.forEach((fireball) => {
-            fireball.style.animation = "moveFireball 4.5s linear";
-          });
-          break;
-        case fireballInterval >= 600 && fireballInterval < 750:
-          fireballss.forEach((fireball) => {
-            fireball.style.animation = "moveFireball 4s linear";
-          });
-          break;
-        case fireballInterval >= 450 && fireballInterval < 600:
-          fireballss.forEach((fireball) => {
-            fireball.style.animation = "moveFireball 3.5s linear";
-          });
-          break;
-        case fireballInterval >= 350 && fireballInterval < 450:
-          fireballss.forEach((fireball) => {
-            fireball.style.animation = "moveFireball 3s linear";
-          });
-          break;
-        case fireballInterval >= 250 && fireballInterval < 350:
-          fireballss.forEach((fireball) => {
-            fireball.style.animation = "moveFireball 2.5s linear";
-          });
-          break;
-        default:
-          return;
-      }
+    switch (true) {
+      case fireballInterval >= 850 && fireballInterval <= 1000:
+        fireballss.forEach((fireball) => {
+          fireball.style.animation = "moveFireball 4s linear";
+        });
+        break;
+      case fireballInterval >= 700 && fireballInterval < 850:
+        fireballss.forEach((fireball) => {
+          fireball.style.animation = "moveFireball 3.6s linear";
+        });
+        break;
+      case fireballInterval >= 550 && fireballInterval < 700:
+        fireballss.forEach((fireball) => {
+          fireball.style.animation = "moveFireball 3.2s linear";
+        });
+        break;
+      case fireballInterval >= 400 && fireballInterval < 550:
+        fireballss.forEach((fireball) => {
+          fireball.style.animation = "moveFireball 2.8s linear";
+        });
+        break;
+      case fireballInterval >= 0 && fireballInterval < 400:
+        fireballss.forEach((fireball) => {
+          fireball.style.animation = "moveFireball 2.4s linear";
+        });
+        break;
+      default:
+        return;
     }
+
 
     setTimeout(() => createFireball(fireballInterval), fireballInterval);
   }
