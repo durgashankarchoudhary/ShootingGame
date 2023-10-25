@@ -14,8 +14,8 @@ body {
   left: 50vw;
   transform: translate(-50%, 0%);
   background: gold;
-  height: calc(4.5454545455vh - 2px);
-  width: 30vh;
+  height: calc(5.5555555556vh - 2px);
+  width: 36.6666666667vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,40 +30,40 @@ input {
 }
 
 label {
-  width: 9.0909090909vh;
+  width: 11.1111111111vh;
 }
 
 input {
-  width: 20.9090909091vh;
+  width: 25.5555555556vh;
   border-width: 0;
 }
 
 .shootpanel,
 .attackpanel {
   display: flex;
-  height: 4.5454545455vh;
+  height: 5.5555555556vh;
   width: auto;
   position: fixed;
-  left: calc(50vw - 11.3636363636vh - 3.6363636364vh);
+  left: calc(50vw - 13.8888888889vh - 4.4444444444vh);
   z-index: 0;
   align-items: center;
   justify-items: center;
 }
 
 .shootpanel {
-  bottom: 2px;
+  bottom: 6.6666666667vh;
 }
 
 .attackpanel {
-  top: calc(4.5454545455vh + 2px);
+  top: calc(5.5555555556vh + 2px);
 }
 
 .shooter,
 .attacker {
   position: relative;
-  height: 4.5454545455vh;
-  width: 4.5454545455vh;
-  margin-right: 1.8181818182vh;
+  height: 5.5555555556vh;
+  width: 5.5555555556vh;
+  margin-right: 2.2222222222vh;
 }
 
 .shooter {
@@ -118,8 +118,8 @@ input {
 .fireball {
   position: absolute;
   top: 0;
-  height: 4.5454545455vh;
-  width: 4.5454545455vh;
+  height: 5.5555555556vh;
+  width: 5.5555555556vh;
   left: 0;
   z-index: -1;
   border-radius: 50%;
@@ -131,18 +131,18 @@ input {
 
 @keyframes moveFireball {
   0% {
-    top: 4.5454545455vh;
+    top: 5.5555555556vh;
   }
   100% {
-    top: 90.9090909091vh;
+    top: 88.8888888889vh;
   }
 }
 .bullet {
   position: absolute;
   top: -2px;
-  height: 4.5454545455vh;
-  width: 2.2727272727vh;
-  left: calc(1.1363636364vh - 2px);
+  height: 5.5555555556vh;
+  width: 2.7777777778vh;
+  left: calc(1.3888888889vh - 2px);
   border-radius: 50% 50% 0% 0%;
   z-index: -1;
   background: pink;
@@ -155,7 +155,7 @@ input {
     top: 0;
   }
   100% {
-    top: -90.9090909091vh;
+    top: -88.8888888889vh;
   }
 }
 .start, .gameOver, .finalScore {
@@ -164,7 +164,7 @@ input {
   font-family: Georgia, "Times New Roman", Times, serif;
   height: auto;
   text-align: center;
-  width: min(30vh, 100vw);
+  width: min(36.6666666667vh, 100vw);
 }
 
 .gameOver, .finalScore {

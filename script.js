@@ -34,34 +34,41 @@ function startgame() {
     }
 
     if (fireballInterval < 900) {
-      increaseFireballSpeed();
+      console.log(fireballInterval);
+      const fireballss = document.querySelectorAll(".fireball");
+
+      switch (true) {
+        case fireballInterval >= 750 && fireballInterval <= 900:
+          fireballss.forEach((fireball) => {
+            fireball.style.animation = "moveFireball 4.5s linear";
+          });
+          break;
+        case fireballInterval >= 600 && fireballInterval < 750:
+          fireballss.forEach((fireball) => {
+            fireball.style.animation = "moveFireball 4s linear";
+          });
+          break;
+        case fireballInterval >= 450 && fireballInterval < 600:
+          fireballss.forEach((fireball) => {
+            fireball.style.animation = "moveFireball 3.5s linear";
+          });
+          break;
+        case fireballInterval >= 350 && fireballInterval < 450:
+          fireballss.forEach((fireball) => {
+            fireball.style.animation = "moveFireball 3s linear";
+          });
+          break;
+        case fireballInterval >= 250 && fireballInterval < 350:
+          fireballss.forEach((fireball) => {
+            fireball.style.animation = "moveFireball 2.5s linear";
+          });
+          break;
+        default:
+          return;
+      }
     }
 
     setTimeout(() => createFireball(fireballInterval), fireballInterval);
-  }
-
-  function increaseFireballSpeed() {
-    const fireballss = document.querySelectorAll(".fireball");
-
-    switch (true) {
-      case fireballInterval >= 750 && fireballInterval <= 900:
-        fireballss.style.animationDuration = "4.5s";
-        break;
-      case fireballInterval >= 600 && fireballInterval < 750:
-        fireballss.style.animationDuration = "4s";
-        break;
-      case fireballInterval >= 450 && fireballInterval < 600:
-        fireballss.style.animationDuration = "3.5s";
-        break;
-      case fireballInterval >= 350 && fireballInterval < 450:
-        fireballss.style.animationDuration = "3.s";
-        break;
-      case fireballInterval >= 250 && fireballInterval < 350:
-        fireballss.style.animationDuration = "2.5s";
-        break;
-      default:
-        return;
-    }
   }
 
   createFireball(fireballInterval);
