@@ -1,5 +1,5 @@
 let gameRunning = false;
-let fireballInterval = 1000;
+let fireballInterval = 700;
 let gameScore = 0;
 
 const startButton = document.getElementById("startbutton");
@@ -29,36 +29,36 @@ function startgame() {
 
     randomAttackPanel.appendChild(fireball);
 
-    if (fireballInterval >= 250) {
-      fireballInterval -= 10;
+    if (fireballInterval >= 300) {
+      fireballInterval -= 5;
     }
 
     const fireballss = document.querySelectorAll(".fireball");
 
     switch (true) {
-      case fireballInterval >= 850 && fireballInterval <= 1000:
+      case fireballInterval >= 600 && fireballInterval <= 700:
         fireballss.forEach((fireball) => {
           fireball.style.animation = "moveFireball 4s linear";
         });
         break;
-      case fireballInterval >= 700 && fireballInterval < 850:
+      case fireballInterval >= 500 && fireballInterval < 600:
         fireballss.forEach((fireball) => {
-          fireball.style.animation = "moveFireball 3.6s linear";
+          fireball.style.animation = "moveFireball 3.7s linear";
         });
         break;
-      case fireballInterval >= 550 && fireballInterval < 700:
+      case fireballInterval >= 450 && fireballInterval < 500:
         fireballss.forEach((fireball) => {
-          fireball.style.animation = "moveFireball 3.2s linear";
+          fireball.style.animation = "moveFireball 3.4s linear";
         });
         break;
-      case fireballInterval >= 400 && fireballInterval < 550:
+      case fireballInterval >= 400 && fireballInterval < 450:
         fireballss.forEach((fireball) => {
-          fireball.style.animation = "moveFireball 2.8s linear";
+          fireball.style.animation = "moveFireball 3.1s linear";
         });
         break;
       case fireballInterval >= 0 && fireballInterval < 400:
         fireballss.forEach((fireball) => {
-          fireball.style.animation = "moveFireball 2.4s linear";
+          fireball.style.animation = "moveFireball 2.8s linear";
         });
         break;
       default:
