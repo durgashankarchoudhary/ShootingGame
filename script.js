@@ -161,7 +161,7 @@ restartButton.onclick = restartgame;
 
 function restartgame() {
   gameScore = 0;
-  fireballInterval = 1000;
+  fireballInterval = 700;
 
   scoreInput.value = gameScore;
 
